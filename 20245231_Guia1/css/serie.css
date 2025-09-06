@@ -1,0 +1,108 @@
+Body{
+    background-color: #222
+}
+
+h1{
+    color: white;
+    text-align: center;
+    font-size: 4em;
+}
+
+.logo-image{
+    width: 80%; /*Ajustando las imágenes para ser más responsivas */
+    max-width: 400px; /* Limite de tamaño máximo para metener la uniformidad */
+    height: auto;
+    display: block; /* Haciendo que las imágenes se centren en bloques */
+    margin: 0 auto; /* Centrando las imágenes */
+}
+
+article h2{
+    color: white;
+}
+
+article {
+    text-align: center;
+}
+
+article h2{
+    font-family: 'Playfair Display', sans-serif;
+    color: #155513; /* Azul vibrante para el titulo principal */
+    font-size: 2.5em; /* Tamaño de fuente más grande */
+    text-align: center;
+    margin-top: 20px; /* Espacio superior para separar del borde */
+}
+article p{
+    font-size: 1.3em;
+    color: #ffffff;
+    width: 80%;
+    margin: 0 auto 20px auto; /* Centrando los párrafos y añadiendo margen inferior */
+    margin-top: 25px; /* Espacio adidional entre las fotos y los parrafos (gusto propio) */
+}
+
+.tabla-personajes {
+    width: 80%;
+    margin: 20px auto; /* Centrando la tabla y añadiendo margen superior*/
+    border-collapse: collapse; /* Colapsando bordes para una apariencia más limpia */
+    background-color: white; /* Fondo blanco para la tabla */
+    border: 1px solid #ddd; /* Bordes suaves y grises */
+    padding: 10px; /* Aumentar espacio entre el contenido de la celda*/
+    text-align: center;
+}
+
+.tabla-personajes td, .tabla-personajes th {
+    border: 1px solid #626262; /* Añadiendo borde blanco a las celdas */
+    padding: 10px 10px; /* Añadiendo padding para un mejor espaciado */
+}
+
+.tabla-personajes th {
+    background-color: #155513; /* Fondo azul claro para encabezados*/
+    color: white; /* Texto en blanco para el contraste */
+    font-weight: bold;
+}
+
+.imagen-serie {
+    width: 80%; /*Ajustando las imágenes para ser más responsivas */
+    max-width: 500px; /* Limite de tamaño máximo para metener la uniformidad */
+    height: auto;
+    display: block; /* Haciendo que las imágenes se centren en bloques */
+    margin: 0 auto; /* Centrando las imágenes */
+    margin-top: 30px; /* Espacio superior para separación entre secciones */
+    margin-bottom: 30px; /* Espacio inferior para separación entre secciones */
+}
+
+footer p{
+font-family: 'Montserrat', sans-serif;
+font-size: 1em;
+color:#155513;
+text-align: center;
+background-color: #ddd;
+margin: 0;
+width: 100%;
+box-sizing: border-box;
+}
+
+ul {
+    width: 80%;
+    margin: 30px auto;
+    padding: 0;
+    list-style-type: disc;
+    background-color: #333;
+    border-radius: 8px;
+    margin-bottom: 30px; /* Espacio entre los ul */
+}
+
+ul li {
+    margin-bottom: 15px; /* Espacio entre los enlaces/list items */
+}
+
+a {
+    color: #20851c; /* Color verde para los enlaces */
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 700; /* Enlaces mas gruesos para mejorar la visibilidad */
+}
+
+a:hover {
+    color: #15a410; /* Color más claro al pasar el mouse */
+    text-decoration: underline; /* Subrayar enlaces al pasar el mouse */
+}
