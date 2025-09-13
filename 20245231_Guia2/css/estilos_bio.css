@@ -1,5 +1,9 @@
-*{
+html{
   background-color: beige;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 h1{
@@ -17,12 +21,12 @@ h2{text-align: center;
 
 .banner{
   height: 200px; 
-  width: 110%; 
+  width: 100%; 
   padding: 0;
   margin: 0px;
 }
 
-article p{
+article p {
   font-size: 1.5rem;
   width: 65%;
   background-color: white;
@@ -31,7 +35,7 @@ article p{
   margin-right: auto;
   padding: 1rem;
   border-radius: 1rem;
-  box-sizing: border-box 1px;
+  border: 1px solid black;
 }
 
 header{
@@ -45,32 +49,49 @@ header nav .menu{
     list-style: none;
     display: flex;
     justify-content: center;
-    gap: 10px;
-    
-  }
+    gap: 10px; 
+}
 
-  header nav .menu li {
-    background-color: white;
-    padding: 0.5rem 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-  }
+header nav .menu li {
+  background-color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid;
+}
 
-  header nav .menu li a {
-    text-decoration: none;
-    color: #333;
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 1rem;
-    background-color: white;
-  }
+header nav .menu li a {
+  text-decoration: none;
+  color: #333;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1rem;
+  background-color: white;
+}
 
-  header nav .menu li a:hover {
-    color: #0077cc;
-  }
+header nav .menu li a:hover {
+  color: #0077cc;
+}
 
 .fotos{
-  height: 350px;
+  height: 300px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+footer p{
+    background-color: #333;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    margin: 0 auto;
+    padding-bottom: 20px;
+    margin-top: 40px;
+    width: 100%;
+    position: relative;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
