@@ -1,0 +1,76 @@
+*{
+  background-color: beige;
+}
+
+h1{
+    font-size: 3rem;
+    font-family: 'Archivo Black', sans-serif;
+    text-align: center;
+    color: #0077cc;
+}
+
+h2{text-align: center;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 2rem;
+  color: #33a2f1;
+}
+
+.banner{
+  height: 200px; 
+  width: 110%; 
+  padding: 0;
+  margin: 0px;
+}
+
+article p{
+  font-size: 1.5rem;
+  width: 65%;
+  background-color: white;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 1rem;
+  border-radius: 1rem;
+  box-sizing: border-box 1px;
+}
+
+header{
+margin: 0;
+width: 100%;
+top: 0;
+left: 0;
+}
+
+header nav .menu{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    
+  }
+
+  header nav .menu li {
+    background-color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+
+  header nav .menu li a {
+    text-decoration: none;
+    color: #333;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1rem;
+    background-color: white;
+  }
+
+  header nav .menu li a:hover {
+    color: #0077cc;
+  }
+
+.fotos{
+  height: 350px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
