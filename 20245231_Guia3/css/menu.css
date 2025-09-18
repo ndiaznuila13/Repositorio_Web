@@ -38,3 +38,16 @@ nav>ul{
 nav>ul>li{
     float: left;
 }
+
+nav>ul>li>ul{
+    position: absolute;
+    display: none;
+}
+
+nav>ul>li:hover ul{
+    display: block;    
+}
+
+nav>ul>li>ul>li{
+    background-color: #222;
+}
