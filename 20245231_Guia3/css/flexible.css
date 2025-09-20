@@ -167,10 +167,21 @@ footer{
     font-style: italic;
 }
 
+#galeria {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px 1.4%;
+}
+
 #galeria .plan{
     font-size: 1em;
-    margin: 30px 1.4% 10px;
     padding-bottom: 1px;
-    float: none;
-    vertical-align: top;
+    width: 26.7%;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+footer{
+    margin-top: 20px;
 }
