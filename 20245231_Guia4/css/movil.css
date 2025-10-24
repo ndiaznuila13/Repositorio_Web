@@ -76,25 +76,30 @@ overflow: auto;
 }
 /* CONTENIDO DE LA PAGINA INDEX */
 .plan{
-width: 94%;
-padding: 1.5%; 
-margin: 20px 1.5%;
+width: 92%;
+padding: 10px 2%; 
+margin: 20px 1%;
 background-color:white;
 border: solid 1px black;
 border-radius: 10px;
-float: left;
 text-align: justify;
 }
 .plan img{
-width: 50%;
+width: 100%;
 height: auto;
-float: left;
-margin-right: 20px;
 }
 
 .boton{
-    width: 40%;
-    float: right;
+    width: 92%;
+    margin: 5px auto;
+}
+
+.plan p{
+    font-size: 0.8em;
+}
+
+.plan h1{
+    font-size: 1em;
 }
 
 /* CONTENIDO DE LA PAGINA PLANES */
@@ -120,12 +125,20 @@ font-weight: bold;
 }
 /* CONTENIDO DE LA PAGINA GALERIA*/
 #galeria .plan{
-font-size: 1em;
+font-size: 0.8em;
 padding-bottom: 10px;
-margin: 30px 1.4% 10px;
-display: inline-block;
+margin: 10px auto;
 float: none;
-vertical-align: top;
 text-align: center;
 font-style: italic;
+}
+
+#galeria .plan p{
+    clear: both;
+}
+
+#galeria .plan img{
+    width: 90%;
+    height: auto;
+    margin: 5px 5%;
 }
