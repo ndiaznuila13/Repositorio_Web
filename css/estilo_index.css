@@ -18,6 +18,9 @@ body {
     color: #0fcc25;
     line-height: 1.6;
     padding: 20px;
+    width: 80%;
+    margin: 0 auto;
+    background-image: url(/img/fondo-index.jpg);
 }
 
 /* Indice */
@@ -32,7 +35,7 @@ nav {
 nav ul {
     list-style: none;
     display: flex;
-    flex-direction: column; /* columna */
+    flex-direction: column;
     gap: 10px;
 }
 
@@ -96,7 +99,6 @@ a {
     font-weight: bold;
 }
 
-/* Hover en los links */
 a:hover {
     background-color: #00ff1e;
     color: #fff;
@@ -106,6 +108,221 @@ a:hover {
     background-color: #222;
 }
 
+.guias li{
+    padding: 2.5px 60px 2.5px 20px;
+}
+
+.guias #Guia1{
+    padding-top: 5px;
+}
+
 .guias h2{
     margin-left: 16px;
+}
+
+/* Bio */
+.datos-personales{
+    background-color: #222;
+    padding: 0px 100px;
+}
+
+.foda{
+    background-color: #222;
+    padding: 2.5px 60px 2.5px 20px;
+}
+
+.foda h2{
+    font-size: 2rem;
+}
+
+/* Contenedor de guías con flexbox */
+.guias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px;
+}
+
+.guias > div {
+    background-color: #2a2a2a;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.guias hr {
+    display: none;
+}
+
+/* Contenedor FODA con flexbox */
+.foda {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.foda > h1 {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.foda-item {
+    background-color: #2a2a2a;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Smartphones */
+@media screen and (max-width: 480px) {
+    body {
+        width: 85%;
+        padding: 10px;
+    }
+
+    header {
+        font-size: 1rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    nav ul li a {
+        width: 90%;
+        font-size: 1.2rem;
+        padding: 10px 15px;
+    }
+
+    .datos-personales {
+        padding: 10px 20px;
+    }
+
+    .guias {
+        flex-direction: column;
+        padding: 10px;
+        gap: 15px;
+    }
+
+    .guias > div {
+        width: 90%;
+        border: solid 1px #0fcc25;
+        border-radius: 10px;
+    }
+
+    .guias li {
+        padding: 5px 10px;
+    }
+
+    .foda {
+        padding: 10px 20px;
+        flex-direction: column;
+    }
+
+    .foda-item {
+        width: 90%;
+        border: solid 1px #0fcc25;
+        border-radius: 10px;
+    }
+}
+
+/* Tablet */
+@media screen and (min-width:481px) and (max-width: 768px) {
+    body {
+        width: 90%;
+        padding: 15px;
+    }
+
+    header {
+        font-size: 1.2rem;
+    }
+
+    h1 {
+        font-size: 2.2rem;
+    }
+
+    nav ul li a {
+        width: 90%;
+        font-size: 1.3rem;
+        padding: 11px 18px;
+    }
+
+    .datos-personales {
+        padding: 15px 40px;
+    }
+
+    .guias {
+        flex-direction: column;
+        padding: auto;
+        gap: 18px;
+       
+    }
+
+    .guias > div {
+        width: 90%;
+        border: solid 1px #0fcc25;
+        border-radius: 10px;
+    }
+
+    .guias li {
+        padding: 7px 15px;
+    }
+
+    .foda {
+        padding: 15px 40px;
+        flex-direction: column;
+    }
+
+    .foda-item {
+        width: 90%;
+        border: solid 1px #0fcc25;
+        border-radius: 10px;
+    }
+
+}
+
+
+/*escritorio */
+@media screen and (min-width:769px) {
+    .guias {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 25px;
+        padding: 20px;
+    }
+
+    .guias > div {
+        
+        flex-wrap: wrap;
+        width: 50%;
+        float: left;
+        background-color: #2a2a2a;
+        border: solid 1px #0fcc25;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: justify;
+        width: 45%;
+    }
+
+
+    .foda {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 25px;
+        padding: 20px;
+    }
+
+    .foda-item {
+        flex-wrap: wrap;
+        width: 50%;
+        float: left;
+        background-color: #2a2a2a;
+        border: solid 1px #0fcc25;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: justify;
+        width: 45%;
+    }
+
+    
 }
