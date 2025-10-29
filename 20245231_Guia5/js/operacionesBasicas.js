@@ -1,0 +1,74 @@
+// Accedemos al parrafo que nos permitira imprimir el resultado
+// y esperamos a que el DOM esté cargado antes de buscar elementos
+document.addEventListener("DOMContentLoaded", () => {
+    const parrafo = document.querySelector("#idParrafo");
+    console.log(parrafo);
+
+    //Accedemos a cada boton por medio de la API DOM (uso de '#' para selectores de id)
+    const btnSumar = document.querySelector("#idBtnSumar");
+    const btnRestar = document.querySelector("#idBtnRestar");
+    const btnMultiplicar = document.querySelector("#idBtnMultiplicar");
+    const btnDividir = document.querySelector("#idBtnDividir");
+
+    //Agregamos el evento click a los botones solo si existen, adicionalmente
+    //se le asigna la funcion que realizará la operación
+    btnSumar.addEventListener("click", sumar);
+    btnRestar.addEventListener("click", restar);
+    btnMultiplicar.addEventListener("click", multiplicar);
+    btnDividir.addEventListener("click", dividir);
+
+    //Creamos la variable que tendra el valor del resultado de la operación matemática
+    let resultado;
+
+    // Funcion de operacione
+    function sumar(){
+        let numero1 = parseFloat(prompt("Ingrese el primer numero a sumar"));
+        let numero2 = parseFloat(prompt("Ingrese el segundo numero a sumar"));
+        if (isNaN(numero1) || isNaN(numero2)) {
+            parrafo && (parrafo.innerHTML = "Entrada inválida");
+            return;
+        }
+        resultado = numero1 + numero2;
+        parrafo && (parrafo.innerHTML = `${numero1} + ${numero2} = ${resultado}`);
+    }
+
+    function restar(){
+        let numero1 = parseFloat(prompt("Ingrese el primer numero a restar"));
+        let numero2 = parseFloat(prompt("Ingrese el segundo numero a restar"));
+        if (isNaN(numero1) || isNaN(numero2)) {
+            parrafo && (parrafo.innerHTML = "Entrada inválida");
+            return;
+        }
+        resultado = numero1 - numero2;
+        parrafo && (parrafo.innerHTML = `${numero1} - ${numero2} = ${resultado}`);
+    }
+
+    function multiplicar(){
+        let numero1 = parseFloat(prompt("Ingrese el primer numero a multiplicar"));
+        let numero2 = parseFloat(prompt("Ingrese el segundo numero a multiplicar"));
+        if (isNaN(numero1) || isNaN(numero2)) {
+            parrafo && (parrafo.innerHTML = "Entrada inválida");
+            return;
+        }
+        resultado = numero1 * numero2;
+        parrafo && (parrafo.innerHTML = `${numero1} * ${numero2} = ${resultado}`);
+    }
+
+    function dividir(){
+        let numero1 = parseFloat(prompt("Ingrese el primer numero a dividir"));
+        let numero2 = parseFloat(prompt("Ingrese el segundo numero a dividir"));
+        if (isNaN(numero1) || isNaN(numero2)) {
+            parrafo && (parrafo.innerHTML = "Entrada inválida");
+            return;
+        }
+        let mensaje;
+        if(numero2 != 0){
+            resultado = numero1 / numero2;
+            mensaje = `${numero1} / ${numero2} = ${resultado}`;
+        } else{
+            mensaje = `El valor ${numero1} / ${numero2} no se puede dividir`;
+        }
+        parrafo && (parrafo.innerHTML = mensaje);
+    }
+});
+
