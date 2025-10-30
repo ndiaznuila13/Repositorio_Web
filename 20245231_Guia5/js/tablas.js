@@ -1,11 +1,11 @@
 // Creación de la tabla utilizando concatenación de cadenas
 let table = "<table>";
-table += "<thead";
+table += "<thead>";
 table += "<tr>";
 table +="<th scope='col'>#</th>";
-table +="<th scope='col>Nombre</th>";
-table +="<th scope='col>Apellido</th>";
-table +="<th scope='col>Correo eletrónico</th>";
+table +="<th scope='col'>Nombre</th>";
+table +="<th scope='col'>Apellido</th>";
+table +="<th scope='col'>Correo electrónico</th>";
 table +="</tr>";
 table +="</thead>";
 table +="<tbody>";

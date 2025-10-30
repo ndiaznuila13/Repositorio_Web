@@ -24,10 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function sumar(){
         let numero1 = parseFloat(prompt("Ingrese el primer numero a sumar"));
         let numero2 = parseFloat(prompt("Ingrese el segundo numero a sumar"));
-        if (isNaN(numero1) || isNaN(numero2)) {
-            parrafo && (parrafo.innerHTML = "Entrada inválida");
-            return;
-        }
         resultado = numero1 + numero2;
         parrafo && (parrafo.innerHTML = `${numero1} + ${numero2} = ${resultado}`);
     }
@@ -35,10 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function restar(){
         let numero1 = parseFloat(prompt("Ingrese el primer numero a restar"));
         let numero2 = parseFloat(prompt("Ingrese el segundo numero a restar"));
-        if (isNaN(numero1) || isNaN(numero2)) {
-            parrafo && (parrafo.innerHTML = "Entrada inválida");
-            return;
-        }
         resultado = numero1 - numero2;
         parrafo && (parrafo.innerHTML = `${numero1} - ${numero2} = ${resultado}`);
     }
@@ -46,10 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function multiplicar(){
         let numero1 = parseFloat(prompt("Ingrese el primer numero a multiplicar"));
         let numero2 = parseFloat(prompt("Ingrese el segundo numero a multiplicar"));
-        if (isNaN(numero1) || isNaN(numero2)) {
-            parrafo && (parrafo.innerHTML = "Entrada inválida");
-            return;
-        }
         resultado = numero1 * numero2;
         parrafo && (parrafo.innerHTML = `${numero1} * ${numero2} = ${resultado}`);
     }
@@ -57,18 +45,15 @@ document.addEventListener("DOMContentLoaded", () => {
     function dividir(){
         let numero1 = parseFloat(prompt("Ingrese el primer numero a dividir"));
         let numero2 = parseFloat(prompt("Ingrese el segundo numero a dividir"));
-        if (isNaN(numero1) || isNaN(numero2)) {
-            parrafo && (parrafo.innerHTML = "Entrada inválida");
-            return;
-        }
         let mensaje;
-        if(numero2 != 0){
+        if (numero2 !=0){
             resultado = numero1 / numero2;
             mensaje = `${numero1} / ${numero2} = ${resultado}`;
-        } else{
-            mensaje = `El valor ${numero1} / ${numero2} no se puede dividir`;
+        }else{
+            mensaje = `${numero1} / ${numero2} no se puede dividir`
         }
-        parrafo && (parrafo.innerHTML = mensaje);
+
+        parrafo.innerHTML= mensaje;
     }
 });
 
