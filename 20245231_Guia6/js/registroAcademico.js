@@ -1,16 +1,15 @@
-document.addEventListener("DOMContentLoaded", function () {
-    //Accedemos al contenedor donde se mostrara los estudiantes
+document.addEventListener("DOMContentLoaded", function(){
+    // Accedemos al contenedor donde se mostrara los estudiantes
     const containerEstudiantes = document.querySelector(
         "#idContainerEstudiantes"
     );
 
-    //Accedemos a cada boton por medio de la API DOM
-    const btnAddEstudiante = document.querySelector("#idBtnAgregarEstudiante");
+    // Accedemos a cada boton por medio de la API DOM
+    const btnAddEstudiante = document.querySelector("#idBtnAgregarEstudiante"); // ← SIN la "s"
     const btnViewEstudiantes = document.querySelector("#idBtnMostrarEstudiantes");
 
-    //Agregamos el evento click a los botones, adicionalmente
-    //se le asigna la funcion que realizará la operación
-    btnAddEstudiante.addEventListener("click", addEstudiantes);
+    // agregamos el evento click a los botones
+    btnAddEstudiante.addEventListener("click",addEstudiantes);
     btnViewEstudiantes.addEventListener("click", viewEstudiantes);
 
     // Arreglo de forma global
@@ -31,25 +30,25 @@ document.addEventListener("DOMContentLoaded", function () {
             .value.toString()
             .toUpperCase();
 
-        if (inputCarnet != "" && inputNombre != "" && inputApellidos != "") {
+        if (inputCarnet != "" && inputNombre != "" && inputApellidos !=""){
             arrayEstudiantes.push(
                 new Array(inputCarnet, inputNombre, inputApellidos)
             );
             alert("Se registro el nuevo estudiante");
-            //Limpiando campos del formulario
-            document.querySelector("#inputCarnet").value = "";
-            document.querySelector("#inputNombre").value = "";
-            document.querySelector("#inputApellidos").value = "";
+            // Limpiando campos del formulario
+            document.querySelector("#inputCarnet").value="";
+            document.querySelector("#inputNombre").value="";
+            document.querySelector("#inputApellidos").value="";
             document.querySelector("#inputCarnet").focus();
-        } else {
+        } else{
             alert("Faltan campos que completar");
         }
     }
 
-    function viewEstudiantes() {
-        //Validando que existan estudiantes registrados
+    function viewEstudiantes(){
+        // validando que existan estudiantes registrados
         let totalEstudiantes = arrayEstudiantes.length;
-        if (totalEstudiantes > 0) {
+        if(totalEstudiantes > 0){
             let carnet;
             let nombres;
             let apellidos;
@@ -57,32 +56,32 @@ document.addEventListener("DOMContentLoaded", function () {
             table += "<thead>";
             table += "<tr>";
             table += "<th scope='col' style='width: 5%;'>#</th>";
-            table += "<th scope='col' style='width: 15%;'>Carnet</th>";
+            table += "<th scope='col' style='width:15%;'>Carnet</th>";
             table += "<th scope='col'>Nombres</th>";
             table += "<th scope='col'>Apellidos</th>";
             table += "</tr>";
             table += "</thead>";
-            table += "<tbody>";
+            table +="<tbody>";
 
             //Utilizaremos un bucle for para recorrer el arreglo de estudiantes
-            for (let i = 0; i < arrayEstudiantes.length; i++) {
-                //Accediendo a las posiciones del arreglo
+            for (let i=0; i <arrayEstudiantes.length; i++){
+                // accediendo a la posiciones del arreglo
                 carnet = arrayEstudiantes[i][0];
                 nombres = arrayEstudiantes[i][1];
                 apellidos = arrayEstudiantes[i][2];
 
-                table += '<tr>';
-                table += '<td scope=\'row\' style=\'font-weight: bold;\'>' + (i + 1) + '</td>';
-                table += '<td>' + (carnet) + '</td>';
-                table += '<td>' + (nombres) + '</td>';
-                table += '<td>' + (apellidos) + '</td>';
-                table += '</tr>';
+                table += `<tr>`;
+                table += `<td scope='row' style='font-weight: bold;'>${i +1}</td>`;
+                table += `<td>${carnet}</td>`;
+                table += `<td>${nombres}</td>`;
+                table += `<td>${apellidos}</td>`;
+                table += `</tr>`;
             }
 
             table += "</tbody>";
             table += "</table>";
             containerEstudiantes.innerHTML = table;
-        } else {
+        } else{
             alert("No se han registrado estudiantes");
         }
     }
