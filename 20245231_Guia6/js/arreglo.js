@@ -42,8 +42,15 @@ function agregarElementos(){
 }
 
 function ordenarElementos(){
-    // Limpiamos el contenedor antes de ordenar
-    containerArregloOrdenado.innerHTML = "";
+    // Verificamos que haya elementos en el arreglo
+    if (arreglo.length === 0) {
+        alert("Primero debe agregar números al arreglo");
+        return;
+    }
+    
+    // Eliminamos solo los divs anteriores, manteniendo el h3
+    const cajasAnteriores = containerArregloOrdenado.querySelectorAll(".colum-green");
+    cajasAnteriores.forEach(caja => caja.remove());
     
     // utilizaremos un for... of para recorrer el arreglo
     // a su vez se utilizara .sort() para ordenarlo
