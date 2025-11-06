@@ -24,6 +24,9 @@ const idModal = document.getElementById("idModal");
 //Arreglo global de pacientes
 let arrayPaciente = [];
 
+//Variable para controlar si estamos editando
+let indexEditando = -1;
+
 /*
 Creando una funcion para que limpie el formulario
 siempre que se cargue la pagina o cuando se presione
@@ -39,6 +42,9 @@ const limpiarForm = () => {
     cmbPais.value = 0;
     inputDireccion.value = "";
     inputNombrePais.value = "";
+    
+    indexEditando = -1;
+    buttonAgregarPaciente.innerHTML = '<i class="bi bi-person-plus-fill"></i> Guardar Datos';
 
     inputNombre.focus();
 };
@@ -69,18 +75,28 @@ const addPaciente = function () {
         pais != 0 &&
         direccion != ""
     ) {
-        //Agregando informacion al arreglo paciente
-        arrayPaciente.push(
-            new Array(nombre, apellido, fechaNacimiento, sexo, labelPais, direccion)
-        );
+        if (indexEditando === -1) {
+            //Agregando informacion al arreglo paciente
+            arrayPaciente.push(
+                new Array(nombre, apellido, fechaNacimiento, sexo, labelPais, direccion)
+            );
+            mensaje.innerHTML = "Se ha registrado un nuevo paciente";
+        } else {
+            //Editando paciente existente
+            arrayPaciente[indexEditando] = new Array(nombre, apellido, fechaNacimiento, sexo, labelPais, direccion);
+            mensaje.innerHTML = "Paciente actualizado correctamente";
+        }
 
-        //Asignando un mensaje a nuestra notificacion
-        mensaje.innerHTML = "Se ha registrado un nuevo paciente";
         //Llamando al componente de Bootstrap
         toast.show();
 
         //Limpiando formulario
         limpiarForm();
+        
+        //Actualizamos la tabla si ya está visible
+        if (document.getElementById("idListaPacientes").innerHTML.includes("table")) {
+            imprimirPacientes();
+        }
     } else {
         //Asignando un mensaje a nuestra notificacion
         mensaje.innerHTML = "Faltan campos por completar";
@@ -89,14 +105,58 @@ const addPaciente = function () {
     }
 };
 
+//Funcion para editar un paciente
+const editarPaciente = (index) => {
+    let paciente = arrayPaciente[index];
+    
+    inputNombre.value = paciente[0];
+    inputApellido.value = paciente[1];
+    inputFechaNacimiento.value = paciente[2];
+    
+    if (paciente[3] === "Hombre") {
+        inputRdMasculino.checked = true;
+    } else {
+        inputRdFemenino.checked = true;
+    }
+    
+    //Buscar el país en el select
+    for (let i = 0; i < cmbPais.options.length; i++) {
+        if (cmbPais.options[i].text === paciente[4]) {
+            cmbPais.value = cmbPais.options[i].value;
+            break;
+        }
+    }
+    
+    inputDireccion.value = paciente[5];
+    
+    indexEditando = index;
+    buttonAgregarPaciente.innerHTML = '<i class="bi bi-pencil-square"></i> Actualizar Paciente';
+    
+    //Hacer scroll hacia el formulario
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    inputNombre.focus();
+};
+
+//Funcion para eliminar un paciente
+const eliminarPaciente = (index) => {
+    if (confirm("¿Está seguro que desea eliminar este paciente?")) {
+        arrayPaciente.splice(index, 1);
+        
+        mensaje.innerHTML = "Paciente eliminado correctamente";
+        toast.show();
+        
+        imprimirPacientes();
+    }
+};
+
 //Funcion que imprime la ficha de los pacientes registrados
 function imprimirFilas() {
     let $fila = "";
-    let contador = 1;
+    let contador = 0;
 
     arrayPaciente.forEach((element) => {
         $fila += `<tr>
-                <td scope="row" class="text-center fw-bold">${contador}</td>
+                <td scope="row" class="text-center fw-bold">${contador + 1}</td>
                 <td>${element[0]}</td>
                 <td>${element[1]}</td>
                 <td>${element[2]}</td>
@@ -104,10 +164,10 @@ function imprimirFilas() {
                 <td>${element[4]}</td>
                 <td>${element[5]}</td>
                 <td>
-                    <button id="idBtnEditar${contador}" type="button" class="btn btn-primary" alt="Eliminar">
+                    <button onclick="editarPaciente(${contador})" type="button" class="btn btn-primary" alt="Editar">
                         <i class="bi bi-pencil-square"></i>
                     </button>
-                    <button id="idBtnEliminar${contador}" type="button" class="btn btn-danger" alt="Editar">
+                    <button onclick="eliminarPaciente(${contador})" type="button" class="btn btn-danger" alt="Eliminar">
                         <i class="bi bi-trash3-fill"></i>
                     </button>
                 </td>
@@ -118,6 +178,11 @@ function imprimirFilas() {
 }
 
 const imprimirPacientes = () => {
+    if (arrayPaciente.length === 0) {
+        document.getElementById("idListaPacientes").innerHTML = "Ninguno";
+        return;
+    }
+    
     let $table = `<div class="table-responsive">
                     <table class="table table-striped table-hover table-bordered">
                         <tr>
@@ -156,6 +221,8 @@ const addPais = () => {
         mensaje.innerHTML = "País agregado correctamente";
         //Llamando al componente de Bootstrap
         toast.show();
+        
+        contadorGlobalOption++;
     } else {
         //Asignando un mensaje a nuestra notificacion
         mensaje.innerHTML = "Faltan campos por completar";
