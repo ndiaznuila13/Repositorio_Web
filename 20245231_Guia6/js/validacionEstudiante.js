@@ -136,21 +136,65 @@ const validarYGuardar = () => {
             edad: inputEdad.value
         });
         
-        notificacion.classList.remove("text-bg-danger");
+        notificacion.classList.remove("text-bg-danger", "text-bg-warning");
         notificacion.classList.add("text-bg-success");
         mensaje.innerHTML = "Estudiante registrado correctamente";
         toast.show();
         
         limpiarFormulario();
+        
+        //Si la tabla está visible, actualizarla
+        if (document.getElementById("idListaEstudiantes").innerHTML.includes("table")) {
+            mostrarEstudiantes();
+        }
     } else {
-        notificacion.classList.remove("text-bg-success");
+        notificacion.classList.remove("text-bg-success", "text-bg-warning");
         notificacion.classList.add("text-bg-danger");
         mensaje.innerHTML = "Por favor corrija los campos marcados en rojo";
         toast.show();
     }
 };
 
-//Función para mostrar estudiantes
+//AQUÍ VAN LAS NUEVAS FUNCIONES DE EDITAR Y ELIMINAR
+//Función para editar estudiante
+const editarEstudiante = (index) => {
+    let estudiante = arrayEstudiantes[index];
+    
+    inputCarnet.value = estudiante.carnet;
+    inputNombreCompleto.value = estudiante.nombre;
+    inputDUI.value = estudiante.dui;
+    inputNIT.value = estudiante.nit;
+    inputFechaNacimiento.value = estudiante.fechaNacimiento;
+    inputCorreo.value = estudiante.correo;
+    inputEdad.value = estudiante.edad;
+    
+    //Eliminar el estudiante del arreglo para actualizarlo
+    arrayEstudiantes.splice(index, 1);
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    inputCarnet.focus();
+    
+    notificacion.classList.remove("text-bg-danger", "text-bg-success");
+    notificacion.classList.add("text-bg-warning");
+    mensaje.innerHTML = "Editando estudiante. Modifique y presione Validar y Guardar";
+    toast.show();
+};
+
+//Función para eliminar estudiante
+const eliminarEstudiante = (index) => {
+    if (confirm("¿Está seguro que desea eliminar este estudiante?")) {
+        arrayEstudiantes.splice(index, 1);
+        
+        notificacion.classList.remove("text-bg-danger", "text-bg-warning");
+        notificacion.classList.add("text-bg-success");
+        mensaje.innerHTML = "Estudiante eliminado correctamente";
+        toast.show();
+        
+        mostrarEstudiantes();
+    }
+};
+
+//Función para mostrar estudiantes - REEMPLAZA LA QUE TIENES
 const mostrarEstudiantes = () => {
     if (arrayEstudiantes.length === 0) {
         document.getElementById("idListaEstudiantes").innerHTML = "Ninguno";
@@ -169,6 +213,7 @@ const mostrarEstudiantes = () => {
                                 <th scope="col" class="text-center">Fecha Nac.</th>
                                 <th scope="col" class="text-center">Correo</th>
                                 <th scope="col" class="text-center">Edad</th>
+                                <th scope="col" class="text-center">Opciones</th>
                             </tr>
                         </thead>
                         <tbody>`;
@@ -183,6 +228,14 @@ const mostrarEstudiantes = () => {
                     <td class="text-center">${estudiante.fechaNacimiento}</td>
                     <td>${estudiante.correo}</td>
                     <td class="text-center">${estudiante.edad}</td>
+                    <td class="text-center">
+                        <button onclick="editarEstudiante(${index})" type="button" class="btn btn-primary btn-sm" title="Editar">
+                            <i class="bi bi-pencil-square"></i>
+                        </button>
+                        <button onclick="eliminarEstudiante(${index})" type="button" class="btn btn-danger btn-sm" title="Eliminar">
+                            <i class="bi bi-trash3-fill"></i>
+                        </button>
+                    </td>
                   </tr>`;
     });
     
