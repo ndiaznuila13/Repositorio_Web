@@ -28,8 +28,9 @@ nav {
     background-color: #222;
     padding: 15px;
     margin-bottom: 25px;
-    border-radius: 8px;
+    border-radius: 10px;
     text-align: center;
+    border: solid 3px
 }
 
 nav ul {
@@ -124,11 +125,14 @@ a:hover {
 .datos-personales{
     background-color: #222;
     padding: 0px 100px;
+    border-radius: 10px;
+    border: solid 3px #0fcc25
 }
 
 .foda{
     background-color: #222;
     padding: 2.5px 60px 2.5px 20px;
+    border: solid 3px
 }
 
 .foda h2{
@@ -141,6 +145,9 @@ a:hover {
     flex-wrap: wrap;
     gap: 15px;
     padding: 20px;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    border: solid 3px
 }
 
 .guias > div {
@@ -158,6 +165,7 @@ a:hover {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    border-radius: 10px;
 }
 
 .foda > h1 {
@@ -192,9 +200,6 @@ a:hover {
         padding: 10px 15px;
     }
 
-    .datos-personales {
-        padding: 10px 20px;
-    }
 
     .guias {
         flex-direction: column;
@@ -250,10 +255,6 @@ a:hover {
         width: 90%;
         font-size: 1.3rem;
         padding: 11px 18px;
-    }
-
-    .datos-personales {
-        padding: 15px 40px;
     }
 
     .guias {
