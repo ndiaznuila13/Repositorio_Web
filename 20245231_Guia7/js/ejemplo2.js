@@ -96,4 +96,4 @@ modal.show();
 // agregando eventos al boton
 button.onclick = () => {
     recorrerFormulario();
-}
+};
