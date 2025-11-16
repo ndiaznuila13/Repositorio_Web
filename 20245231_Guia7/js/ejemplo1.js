@@ -177,7 +177,6 @@ buttonAddElemento.onclick = () => {
 };
 
 // Agregando evento para el modal de boostrap
-// CORREGIDO: Había un paréntesis de más
 document.getElementById("idModal").addEventListener("shown.bs.modal", () => {
     // Limpiando campos para los nuevos elementos
     tituloElemento.value = "";
