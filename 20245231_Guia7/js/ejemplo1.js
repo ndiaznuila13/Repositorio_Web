@@ -5,6 +5,7 @@ const newForm = document.getElementById("idNewForm");
 // ACCDIENDO A LA REFERENCIA DE BOTONES
 const buttonCrear = document.getElementById("idBtnCrear");
 const buttonAddElemento = document.getElementById("idBtnAddElement");
+const buttonValidar = document.getElementById("idBtnValidar");
 
 // ACCEDIENDO AL VALOR DEL SELECT PARA DETERMINAR EL TIPO DE ELEMENTO A CREAR
 const cmbElemento = document.getElementById("idCmbElemento");
@@ -18,144 +19,172 @@ const modal = new bootstrap.Modal(document.getElementById("idModal"), {});
 
 // AGREGANDO FUNCIONES
 const verificarTipoElemento = function() {
-    let elemento = cmbElemento.value; // CORREGIDO: era cmdElemento
-    // validando que se haya seleccionado un elemento
+    let elemento = cmbElemento.value;
     if (elemento != "") {
-        // Metodo perteneciente al modal de boostrap
         modal.show();
     } else {
         alert("Debe seleccionar el elemento que se creara");
     }
 };
 
+const validarIdUnico = function(id) {
+    const elementoExistente = document.getElementById(`id${id}`);
+    if (elementoExistente) {
+        alert(`El ID "${id}" ya existe. Por favor, ingrese un ID único para el control.`);
+        return false;
+    }
+    return true;
+};
+
+const validarFormulario = function() {
+    const elementos = newForm.elements;
+    let errores = [];
+    
+    for (let i = 0; i < elementos.length; i++) {
+        let elemento = elementos[i];
+        
+        if (elemento.tagName === "INPUT") {
+            if (elemento.type === "text" || elemento.type === "number" || elemento.type === "date" || elemento.type === "password" || elemento.type === "email" || elemento.type === "color") {
+                if (elemento.value.trim() === "") {
+                    errores.push(`El campo "${elemento.placeholder}" está vacío`);
+                }
+            } else if (elemento.type === "radio" || elemento.type === "checkbox") {
+                let nombre = elemento.name || elemento.id;
+                let grupoSeleccionado = false;
+                let radios = document.getElementsByName(nombre);
+                
+                for (let j = 0; j < radios.length; j++) {
+                    if (radios[j].checked) {
+                        grupoSeleccionado = true;
+                        break;
+                    }
+                }
+                
+                if (!grupoSeleccionado && elemento.type === "radio") {
+                    errores.push(`Debe seleccionar una opción del grupo "${nombre}"`);
+                }
+            }
+        } else if (elemento.tagName === "SELECT") {
+            if (elemento.selectedIndex === 0 || elemento.value === "") {
+                errores.push(`Debe seleccionar una opción en el campo "${elemento.id}"`);
+            }
+        } else if (elemento.tagName === "TEXTAREA") {
+            if (elemento.value.trim() === "") {
+                errores.push(`El área de texto está vacía`);
+            }
+        }
+    }
+    
+    if (errores.length > 0) {
+        alert("Errores de validación:\n\n" + errores.join("\n"));
+    } else {
+        alert("¡Formulario validado correctamente! Todos los campos están completos.");
+    }
+};
+
 const newSelect = function() {
-    // Creando elementos
+    if (!validarIdUnico(nombreElemento.value)) return;
+    
     let addElemento = document.createElement("select");
-    // creando atributos para el nuevo elemento
     addElemento.setAttribute("id", `id${nombreElemento.value}`);
     addElemento.setAttribute("class", "form-select");
 
-    // creando option para el select
     for (let i = 1; i <= 10; i++){
         let addOption = document.createElement("option");
         addOption.value = i;
-        addOption.innerHTML = `Opcion ${i}`;
+        let textoOpcion = document.createTextNode(`Opcion ${i}`);
+        addOption.appendChild(textoOpcion);
         addElemento.appendChild(addOption);
     }
 
-    // creando label para el nuevo control
     let labelElemento = document.createElement("label");
     labelElemento.setAttribute("for", `id${nombreElemento.value}`);
-    // creando texto para label
-    labelElemento.textContent = tituloElemento.value;
+    let textoLabel = document.createTextNode(tituloElemento.value);
+    labelElemento.appendChild(textoLabel);
 
-    // Creando label de id
     let labelId = document.createElement("span");
-    labelId.textContent = `ID de control: ${nombreElemento.value}`;
+    let textoId = document.createTextNode(`ID de control: ${nombreElemento.value}`);
+    labelId.appendChild(textoId);
 
-    // creando plantilla de boostrap para visualizar el elemento nuevo
     let divElemento = document.createElement("div");
-    // Agregando atributos
     divElemento.setAttribute("class", "form-floating");
 
-    // Creando el input que sera hijo del div
     divElemento.appendChild(addElemento);
-    // creando el label que sera hijo del div
     divElemento.appendChild(labelElemento);
 
-    // creando el span que sera hijo del nuevo formulario
     newForm.appendChild(labelId);
-
-    // creando el Div que sera hijo del nuevo Formulario
     newForm.appendChild(divElemento);
 };
 
 const newRadioCheckbox = function(newElemento) {
-    // Creando elementos
+    if (!validarIdUnico(nombreElemento.value)) return;
+    
     let addElemento = document.createElement("input");
-    // creando atributos para el nuevo elemento
     addElemento.setAttribute("id", `id${nombreElemento.value}`);
     addElemento.setAttribute("type", newElemento);
     addElemento.setAttribute("class", "form-check-input");
 
-    // creando label para el nuevo control
     let labelElemento = document.createElement("label");
     labelElemento.setAttribute("class", "form-check-label");
     labelElemento.setAttribute("for", `id${nombreElemento.value}`);
-    // creando texto para label
-    labelElemento.textContent = tituloElemento.value;
+    let textoLabel = document.createTextNode(tituloElemento.value);
+    labelElemento.appendChild(textoLabel);
 
-    // creando label de id
     let labelId = document.createElement("span");
-    labelId.textContent = `ID de control : ${nombreElemento.value}`;
+    let textoId = document.createTextNode(`ID de control : ${nombreElemento.value}`);
+    labelId.appendChild(textoId);
 
-    // creando plantilla de boostrap para visualizar el nuevo elemento
     let divElemento = document.createElement("div");
-    // Agregando atributos
-    divElemento.setAttribute("class", "form-check"); // CORREGIDO: era forn-check
+    divElemento.setAttribute("class", "form-check");
 
-    // creando el input que sera hijo del div
     divElemento.appendChild(addElemento);
-    // Creando el label que sera hijo del div
     divElemento.appendChild(labelElemento);
 
-    // creando el span que sera hijo del nuevo Formulario
     newForm.appendChild(labelId);
-
-    // creando el div que sera hijo del nuevo formulario
     newForm.appendChild(divElemento);
 };
 
 const newInput = function (newElemento) {
-    // Creando elementos de tipo = text, number, date y password
+    if (!validarIdUnico(nombreElemento.value)) return;
+    
     let addElemento =
         newElemento == "textarea"
         ? document.createElement("textarea")
         : document.createElement("input");
 
-    // creando atributos para el nuevo elemento
     addElemento.setAttribute("id", `id${nombreElemento.value}`);
-    addElemento.setAttribute("type", newElemento);
     addElemento.setAttribute("class", "form-control");
     addElemento.setAttribute("placeholder", tituloElemento.value);
+    
+    if (newElemento != "textarea") {
+        addElemento.setAttribute("type", newElemento);
+    }
 
-    // creando label para el nuevo control
     let labelElemento = document.createElement("label");
     labelElemento.setAttribute("for", `id${nombreElemento.value}`);
 
-    // creando icono para el label
     let iconLabel = document.createElement("i");
     iconLabel.setAttribute("class", "bi bi-tag");
 
-    // creando texto para label
-    labelElemento.textContent = tituloElemento.value;
+    let textoLabel = document.createTextNode(tituloElemento.value);
+    labelElemento.appendChild(textoLabel);
 
-    // creando el elemento i como hijo del label, afterbegin le
-    // indicamos que se creara antes de su primer hijo
     labelElemento.insertAdjacentElement("afterbegin", iconLabel);
 
-    // creando label de id
     let labelId = document.createElement("span");
-    labelId.textContent = `ID de control : ${nombreElemento.value}`;
+    let textoId = document.createTextNode(`ID de control : ${nombreElemento.value}`);
+    labelId.appendChild(textoId);
 
-    // creando plantilla de boostrap para visualizar el nuevo elemento
     let divElemento = document.createElement("div");
-    // agregando atributos
-    divElemento.setAttribute("class", "form-floating mb-3"); // CORREGIDO: era fom-floating
+    divElemento.setAttribute("class", "form-floating mb-3");
 
-    // creando el input que sera hijo del div
     divElemento.appendChild(addElemento);
-    // creando el label que sera hijo del div
     divElemento.appendChild(labelElemento);
 
-    // creando el span que sera hijo del nuevo formulario
     newForm.appendChild(labelId);
-
-    // creando el div que sera hijo del nuevo formulario
     newForm.appendChild(divElemento);
 };
 
-// AGREGANDO EVENTO CLIC A LOS BOTONES
 buttonCrear.onclick = () => {
     verificarTipoElemento();
 };
@@ -176,11 +205,12 @@ buttonAddElemento.onclick = () => {
     }
 };
 
-// Agregando evento para el modal de boostrap
+buttonValidar.onclick = () => {
+    validarFormulario();
+};
+
 document.getElementById("idModal").addEventListener("shown.bs.modal", () => {
-    // Limpiando campos para los nuevos elementos
     tituloElemento.value = "";
     nombreElemento.value = "";
-    // inicializando puntero en el campo del titulo para el control
     tituloElemento.focus();
 });
